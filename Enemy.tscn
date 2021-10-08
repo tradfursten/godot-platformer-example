@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/kenney_pixelplatformer/Characters/character_0022.png" type="Texture" id=1]
+[ext_resource path="res://assets/kenney_pixelplatformer/Characters/character_0021.png" type="Texture" id=2]
+[ext_resource path="res://Enemy.gd" type="Script" id=4]
+[ext_resource path="res://assets/kenney_pixelplatformer/Characters/character_0023.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.72539, 9.38223 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 9.28156, 1.4826 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1.16551, 8.50338 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.0498447, 2.26567 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "walking"
+playing = true
+
+[node name="floorChecker" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 2
+collide_with_areas = true
+
+[node name="top_checker" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="top_checker" type="CollisionShape2D" parent="top_checker"]
+position = Vector2( 0.0393982, -7.72207 )
+shape = SubResource( 3 )
+
+[node name="side_checker" type="Area2D" parent="."]
+position = Vector2( -10.4406, 1.49714 )
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="side_checker"]
+position = Vector2( 0.0393982, 0.906162 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="side_checker"]
+position = Vector2( 20.9993, 1.10315 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
+[connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

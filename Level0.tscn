@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://assets/numbers/0.png" type="Texture" id=2]
+[ext_resource path="res://Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tiles.tres" type="TileSet" id=5]
+[ext_resource path="res://Level0.gd" type="Script" id=6]
+[ext_resource path="res://Goal.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 920.397, 10 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.380392 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Level0" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( -448.33, -10.048 )
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 524289, 1, 1, 524290, 1, 2, 524291, 1, 2, 524292, 1, 2, 524293, 1, 2, 524294, 1, 2, 524295, 1, 2, 524296, 1, 2, 524297, 1, 2, 524298, 1, 2, 524299, 1, 2, 524300, 1, 2, 524301, 1, 2, 524302, 1, 2, 524303, 1, 2, 524304, 1, 2, 524305, 1, 2, 524306, 1, 2, 524307, 1, 2, 524308, 1, 2, 524309, 1, 2, 524310, 1, 2, 524311, 1, 2, 524312, 1, 2, 524313, 1, 2, 524314, 1, 2, 524315, 1, 2, 524316, 1, 2, 524317, 1, 2, 524318, 1, 2, 524319, 1, 2, 524320, 1, 2, 524321, 1, 2, 524322, 1, 2, 524323, 1, 2, 524324, 1, 2, 524325, 1, 2, 524326, 1, 3 )
+
+[node name="Goal" parent="." instance=ExtResource( 7 )]
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( -376.116, 88.6003 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = -500
+limit_bottom = 170
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+
+[node name="fallzone" type="Area2D" parent="."]
+position = Vector2( 1.20183, 180.102 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fallzone"]
+shape = SubResource( 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_left = 27.1168
+margin_top = 21.2804
+margin_right = 129.117
+margin_bottom = 69.2803
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1000" type="TextureRect" parent="HUD"]
+margin_left = 42.2661
+margin_top = 35.7054
+margin_right = 82.2661
+margin_bottom = 75.7054
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="100" type="TextureRect" parent="HUD"]
+margin_left = 58.2894
+margin_top = 35.8316
+margin_right = 98.2894
+margin_bottom = 75.8316
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="10" type="TextureRect" parent="HUD"]
+margin_left = 73.3033
+margin_top = 35.8316
+margin_right = 91.3033
+margin_bottom = 53.8316
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="TextureRect" parent="HUD"]
+margin_left = 88.9481
+margin_top = 36.0839
+margin_right = 128.948
+margin_bottom = 76.0839
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -232, 120 )
+
+[node name="Coin2" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -264, 120 )
+
+[node name="Coin3" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -296, 120 )
+
+[node name="Coin4" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -104, 120 )
+
+[node name="Coin5" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -136, 120 )
+
+[node name="Coin6" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -168, 120 )
+
+[node name="Coin7" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -200, 120 )
+
+[node name="Coin8" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -8, 120 )
+
+[node name="Coin9" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -40, 120 )
+
+[node name="Coin10" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( -72, 120 )
+
+[connection signal="body_entered" from="fallzone" to="." method="_on_fallzone_body_entered"]

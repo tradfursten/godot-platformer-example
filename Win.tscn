@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Win" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 502.762
+margin_top = 290.702
+margin_right = 560.762
+margin_bottom = 304.702
+text = "You win!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
